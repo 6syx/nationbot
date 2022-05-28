@@ -1,0 +1,25 @@
+{
+  "name": "nationbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paraanoia/nationbot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paraanoia/nationbot/issues"
+  },
+  "homepage": "https://github.com/paraanoia/nationbot#readme",
+  "dependencies": {
+    "discord.js": "^13.7.0",
+    "dotenv": "^16.0.1",
+    "noblox.js": "^4.13.1"
+  }
+}
