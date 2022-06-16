@@ -4,6 +4,7 @@ const client = new discord.Client({ intents: [discord.Intents.FLAGS.GUILDS, disc
 const roblox = require('noblox.js')
 const fs = require('fs')
 const commandFiles = fs.readdirSync('./cmds').filter(file => file.endsWith('.js'));
+const config = require('./config.json')
 
 client.commands = new discord.Collection()
 
@@ -18,7 +19,7 @@ client.once('ready', async () => {
 	let userinfo = await roblox.getCurrentUser()
 	console.log(userinfo)
     console.log(`Logged in as:\n\nDiscord: ${client.user.tag} (${client.user.id})\nRoblox: ${userinfo.UserName} (${userinfo.UserID})`)
-	client.guilds.cache.get('804877486521319455').members.fetch()
+	client.guilds.cache.get(config.guildid).members.fetch()
 })
 
 client.on('interactionCreate', async interaction => {

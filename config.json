@@ -3,6 +3,7 @@
     "clientid": "979856115779129354",
     "guildid": "804877486521319455",
     "immigration": {
-        "enabled": true
+        "enabled": true,
+        "logchannel": "id"
     }
 }
