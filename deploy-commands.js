@@ -13,14 +13,14 @@ for (const file of commandFiles) {
 	const command = require(`./cmds/${file}`);
 	if (command.category.toLowerCase() == "ranking") {
 		if (config.ranking.enabled == true) {
-			command.data.addNumberOption(opt => {
-				opt.setName('key')
+			let numberopt = new builders.SlashCommandNumberOption()
+				.setName('key')
 				.setDescription('Key of the group you want to manage.')
 				.setRequired(true)
-				Object.entries(config.ranking.keys).forEach(([key, value]) => {
-					opt.addChoices({name: key, value: value})
-				})
+			Object.entries(config.ranking.keys).forEach(([key, value]) => {
+				numberopt.addChoices({name: key, value: value})
 			})
+			command.data.addNumberOption(numberopt)
 			commands.push(command.data.toJSON());
 		}
 	} else if (command.category.toLowerCase() == "immigration") {

@@ -9,12 +9,14 @@ module.exports = {
         .setDescription('Change the distinguihsment status of a user.')
         .addStringOption(opt =>
             opt.setName(`action`)
+            .setDescription('Action to take on the user.')
             .addChoices(
                 { name: "Add", value: "add"},
                 { name: "Remove", value: "remove"},
                 { name: "View", value: "view"}
             )
-            .setRequired(true))
+            .setRequired(true)
+        )
         .addStringOption(opt =>
             opt.setName('username')
             .setDescription('Only applicable to the add/remove actions. Roblox username of the person you want to distinguish.')
