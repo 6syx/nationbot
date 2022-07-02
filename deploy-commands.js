@@ -13,11 +13,12 @@ for (const file of commandFiles) {
 	const command = require(`./cmds/${file}`);
 	if (command.category.toLowerCase() == "ranking") {
 		if (config.ranking.enabled == true) {
-			command.data.addStringOption(opt => {
+			command.data.addNumberOption(opt => {
 				opt.setName('key')
 				.setDescription('Key of the group you want to manage.')
+				.setRequired(true)
 				Object.entries(config.ranking.keys).forEach(([key, value]) => {
-					opt.addChoices({name: key, value: key})
+					opt.addChoices({name: key, value: value})
 				})
 			})
 			commands.push(command.data.toJSON());
