@@ -11,7 +11,15 @@ const commandFiles = fs.readdirSync('./cmds').filter(file => file.endsWith('.js'
 
 for (const file of commandFiles) {
 	const command = require(`./cmds/${file}`);
-	commands.push(command.data.toJSON());
+	if (command.category.toLowerCase() == "ranking") {
+		if (config.ranking.enabled == true) {
+			commands.push(command.data.toJSON());
+		}
+	} else if (command.category.toLowerCase() == "immigration") {
+		if (config.immigration.enabled == true) {
+			commands.push(command.data.toJSON());
+		}
+	}
 }
 
 const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);

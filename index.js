@@ -41,9 +41,9 @@ setInterval(async () => {
 	if (config.immigration.enabled == true) {
 	  let failedcheck = false
 	  let blacklistedgroups1 = 0
-	  let blacklistedgroups = config.immigration.blacklistedgroups
-	  let blacklistedusers = config.immigration.blacklistedusers
-	  const immigrants = await roblox.getPlayers(config.groupid, config.immigration.immigrationoffice)
+	  let blacklistedgroups = config.immigration.settings.blacklistedgroups
+	  let blacklistedusers = config.immigration.settings.blacklistedusers
+	  const immigrants = await roblox.getPlayers(config.groupid, config.immigration.immigrantrank)
 	  for (i = 0; i < immigrants.length; i++) {
 		blacklistedgroups1 = 0
 		const userGroups = await roblox.getGroups(immigrants[i].userId)
@@ -61,54 +61,68 @@ setInterval(async () => {
 			let iEmbed = new discord.MessageEmbed()
 			  .setTitle('Fail')
 			  .setColor('RED')
-			  .setDescription(`${immigrants[i].username} is a blacklisted user and has been successfully detained.`)
+			  .setDescription(`${immigrants[i].username} is a blacklisted user and has been successfully detained. (ID: ${String(immigrants[i].userId)})`)
 			  .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${immigrants[i].userId}&width=420&height=420&format=png`)
 			client.channels.cache.get(config.immigration.logchannel).send(iEmbed)
 			return
 		  }
 		}
+		if (config.immigration.settings.distinguishment.enabled == true) {
+			for (f = 0; f < config.immigration.settings.distinguishment.list.length; f++) {
+				if (config.immigration.settings.distinguishment.list[f] == immigrants[i].userId) {
+				await roblox.setRank(config.groupid, immigrants[i].userId, Number(config.immigration.settings.distinguishment.rank))
+				let iEmbed = new discord.MessageEmbed()
+					.setTitle('Success')
+					.setColor('GREEN')
+					.setDescription(`${immigrants[i].username} is a distinguished individual and has been ranked accordingly. (ID: ${String(immigrants[i].userId)})`)
+					.setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${immigrants[i].userId}&width=420&height=420&format=png`)
+				client.channels.cache.get(config.immigration.logchannel).send(iEmbed)
+				return
+				}
+			}
+		}
 		const player = await roblox.getPlayerInfo(immigrants[i].userId)
-		if (player.age <= config.immigration.agelimit) {
+		if (player.age <= config.immigration.settings.agelimit) {
 			await roblox.setRank(config.groupid, immigrants[i].userId, config.immigration.failrank)
 			let iEmbed = new discord.MessageEmbed()
 			  .setTitle('Fail')
 			  .setColor('RED')
-			  .setDescription(`${immigrants[i].username} is underage and has been detained.`)
+			  .setDescription(`${immigrants[i].username} is underage and has been detained. (ID: ${String(immigrants[i].userId)})`)
 			  .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${immigrants[i].userId}&width=420&height=420&format=png`)
 			client.channels.cache.get(config.immigration.logchannel).send(iEmbed)
 			return
 		}
-		if (config.immigration.un.enabled == true) {
-		  if (await roblox.getRankInGroup(config.immigration.un.group, immigrants[i].userId) >= config.immigration.un.unrank) {
-			await roblox.setRank(config.groupid, immigrants[i].userId, Number(config.immigration.un.reprank))
+		if (config.immigration.settings.majororganization.enabled == true) {
+		  if (await roblox.getRankInGroup(config.immigration.un.group, immigrants[i].userId) >= config.immigration.settings.majororganization.org_rank_id) {
+			await roblox.setRank(config.groupid, immigrants[i].userId, Number(config.immigration.settings.majororganization.your_foreign_rank_id))
 			let iEmbed = new discord.MessageEmbed()
 			  .setTitle('Success')
 			  .setColor('GREEN')
-			  .setDescription(`${immigrants[i].username} was found as a representative from the United Nations and has been ranked to Foreign Representative.`)
+			  .setDescription(`${immigrants[i].username} was found as a representative from the United Nations and has been ranked to Foreign Representative. (ID: ${String(immigrants[i].userId)})`)
 			  .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${immigrants[i].userId}&width=420&height=420&format=png`)
 			client.channels.cache.get(config.immigration.logchannel).send(iEmbed)
 			return
 		  }
 		}
 		if (failedcheck == true) {
-		  await roblox.setRank(config.groupid, immigrants[i].userId, Number(config.immigration.failrank)).catch(err => {
+		  await roblox.setRank(config.groupid, immigrants[i].userId, Number(config.immigration.failedrank)).catch(err => {
 			console.log(err)
 		  })
 		  let iEmbed = new discord.MessageEmbed()
 			.setTitle('Fail')
 			.setColor('RED')
-			.setDescription(`${immigrants[i].username} was caught in ${blacklistedgroups1} blacklisted groups and successfully detained.`)
+			.setDescription(`${immigrants[i].username} was caught in ${blacklistedgroups1} blacklisted groups and successfully detained. (ID: ${String(immigrants[i].userId)})`)
 			.setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${immigrants[i].userId}&width=420&height=420&format=png`)
 		  client.channels.cache.get(config.immigration.logchannel).send(iEmbed)
 		  return
 		} else {
-		  await roblox.setRank(config.groupid, immigrants[i].userId, Number(config.immigration.citizen)).catch(err => {
+		  await roblox.setRank(config.groupid, immigrants[i].userId, Number(config.immigration.citizenrank)).catch(err => {
 			console.log(err)
 		  })
 		  let iEmbed = new discord.MessageEmbed()
 			.setTitle('Success')
 			.setColor('GREEN')
-			.setDescription(`${immigrants[i].username} was found in ${blacklistedgroups1} blacklisted groups and successfully immigrated.`)
+			.setDescription(`${immigrants[i].username} was found in ${blacklistedgroups1} blacklisted groups and successfully immigrated. (ID: ${String(immigrants[i].userId)})`)
 			.setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${immigrants[i].userId}&width=420&height=420&format=png`)
 		  client.channels.cache.get(config.immigration.logchannel).send(iEmbed)
 		  return

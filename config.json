@@ -4,6 +4,46 @@
     "guildid": "804877486521319455",
     "immigration": {
         "enabled": true,
-        "logchannel": "id"
+        "logchannel": "id",
+        "settings": {
+            "agelimit": 0,
+            "blacklistedgroups": [],
+            "blacklistedusers": [],
+            "comment": "Toggle immigration below. It can also be turned on and off through the bot itself. Above list is formatted by user IDs.",
+            "toggle": true,
+            "distinguishment": {
+                "comment": "Distinguish your most prestigious group members as a little treat for their work in your group. :)",
+                "enabled": true,
+                "rank": 4,
+                "list": []
+            },
+            "majororganization": {
+                "comment": "This category can be used for any organization you want to majorly recognize. You can only recognize one, so it is suggested to place your current United Nations here.",
+                "enabled": true,
+                "groupid": 4043053,
+                "org_rank_id": 2,
+                "your_foreign_rank_id": 5
+            }
+        },
+        "immigrantrank": 40034904,
+        "failedrank": 2,
+        "citizenrank": 3
+    },
+    "ranking": {
+        "enabled": true,
+        "comment": "You can add as many keys as you want. You can copy and paste the default one, but they should be seperated by commas. You will need to reinput your groupid from above as the main group ID.",
+        "keys": {
+            "main": 2831233,
+            "army": 2831233
+        }
+    },
+    "management": {
+        "comment": "These go by Discord user IDs. Administrators can only be added through the script, so choose wisely.",
+        "administrators": [
+
+        ],
+        "lowerusers": [
+
+        ]
     }
 }

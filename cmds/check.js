@@ -1,0 +1,85 @@
+const { SlashCommandBuilder } = require("@discordjs/builders");
+const { config } = require("../config.json");
+const roblox = require('noblox.js')
+
+module.exports = {
+    data: new SlashCommandBuilder()
+        .setName('check')
+        .setDescription('Background check a user for immigration.')
+        .addStringOption(opt => 
+            opt.setName('username')
+            .setDescription('Username of the person you would like to check.')
+        ),
+    category: "immigration",
+    async execute(interaction) {
+        let user = interaction.options.getString('check')
+        let uid = await roblox.getIdFromUsername(user)
+        if (config.immigration.settings.toggle !== false) return interaction.reply(`Immigration is currently not enabled. Please enable it with the /immigration command.`)
+        if (!uid) return interaction.reply(`This user does not exist on Roblox.`)
+        if (!config.management.administrators[usera] && !config.management.lowerusers[usera]) return interaction.reply("You are not whitelisted to use this bot's administrative functions. Contact its owner if you feel this is a mistake.")
+        blacklistedgroups1 = 0
+		const userGroups = await roblox.getGroups(immigrants[i].userId)
+		for (f = 0; f < userGroups.length; f++) {
+		  for (l = 0; l < blacklistedgroups.length; l++) {
+			if (blacklistedgroups[l] == userGroups[f].Id) {
+			  failedcheck = true
+			  blacklistedgroups1 += 1
+			}
+		  }
+		}
+        for (f = 0; f < blacklistedusers.length; f++) {
+            if (blacklistedusers[f] == uID) {
+                await roblox.setRank(config.groupid, uID, Number(config.immigration.failrank))
+                let iEmbed = new discord.MessageEmbed()
+                    .setTitle('Fail')
+                    .setColor('RED')
+                    .setDescription(`${realname} is a blacklisted user and has been successfully detained.`)
+                    .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${uID}&width=420&height=420&format=png`)
+                client.channels.cache.get(config.immigration.logchannel).send(iEmbed)
+                return interaction.reply('This user is a blacklisted individual and deemed ineligible for immigration.')
+            }
+        }
+        if (config.immigration.settings.distinguishment.enabled == true) {
+			for (f = 0; f < config.immigration.settings.distinguishment.list.length; f++) {
+				if (config.immigration.settings.distinguishment.list[f] == immigrants[i].userId) {
+				return interaction.reply('This user is a distinguished individual and deemed eligible for immigration.')
+				}
+			}
+		}
+        if (config.immigration.settings.majororganization.enabled == true) {
+            if (await roblox.getRankInGroup(config.immigration.settings.majororganization.groupid, uID) >= config.immigration.settings.majororganization.org_rank_id) {
+            await roblox.setRank(config.groupid, uID, Number(config.immigration.settings.majororganization.your_foreign_rank_id))
+            let iEmbed = new discord.MessageEmbed()
+                .setTitle('Success')
+                .setColor('GREEN')
+                .setDescription(`${immigrants[i].username} was found as a representative from the United Nations and has been ranked to Foreign Representative.`)
+                .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${uID}&width=420&height=420&format=png`)
+            client.channels.cache.get(config.immigration.logchannel).send(iEmbed)
+            return interaction.reply('This user is a foreign representative and has been ranked accordingly.')
+            }
+        }
+        const player = await roblox.getPlayerInfo(uID)
+        if (player.age <= config.immigration.settings.agelimit) {
+            await roblox.setRank(config.groupid, uID, config.immigration.failedrank)
+            let iEmbed = new discord.MessageEmbed()
+                .setTitle('Fail')
+                .setColor('RED')
+                .setDescription(`${realname} is underage on Roblox and has been successfully detained.`)
+                .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${uID}&width=420&height=420&format=png`)
+            client.channels.cache.get(config.immigration.logchannel).send(iEmbed)
+            interaction.reply('This user has been caught as underage and has been deemed ineligible for immigration.')
+        }
+        if (failedcheck == true) {
+            await roblox.setRank(config.groupid, uID, Number(config.immigration.failedrank))
+            let iEmbed = new discord.MessageEmbed()
+                .setTitle('Fail')
+                .setColor('RED')
+                .setDescription(`${realname} was caught in ${blacklistedgroups1} blacklisted groups and successfully detained.`)
+                .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${uID}&width=420&height=420&format=png`)
+            client.channels.cache.get(config.immigration.logchannel).send(iEmbed)
+            interaction.reply('This user has been caught in blacklisted groups and deemed ineligible for immigration.')
+        } else {
+            interaction.reply('This user has been checked and is deemed eligible for immigration.')
+        }
+    }
+}
