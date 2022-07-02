@@ -13,10 +13,21 @@ for (const file of commandFiles) {
 	const command = require(`./cmds/${file}`);
 	if (command.category.toLowerCase() == "ranking") {
 		if (config.ranking.enabled == true) {
+			command.data.addStringOption(opt => {
+				opt.setName('key')
+				.setDescription('Key of the group you want to manage.')
+				Object.entries(config.ranking.keys).forEach(([key, value]) => {
+					opt.addChoices({name: key, value: key})
+				})
+			})
 			commands.push(command.data.toJSON());
 		}
 	} else if (command.category.toLowerCase() == "immigration") {
 		if (config.immigration.enabled == true) {
+			commands.push(command.data.toJSON());
+		}
+	} else if (command.category.toLowerCase() == "distinguished") {
+		if (config.immigration.settings.distinguishment.enabled == true) {
 			commands.push(command.data.toJSON());
 		}
 	}
