@@ -42,6 +42,8 @@ In repl, the .env file will be hidden on the left bar as its own tab. You will h
 
 ![repl .env](https://cdn.upload.systems/uploads/WPbmUgy2.png)
 
+update: i learned this probably wont work for a while since repl has a lower node version 🥶🥶
+
 Head to [UptimeRobot](https://uptimerobot.com) and make an account if you don't have one. Put your bot in as an HTTP monitor set to check every 5 minutes.
 
 ![thing](https://cdn.upload.systems/uploads/F15LgBz3.png)
