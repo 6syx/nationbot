@@ -43,7 +43,7 @@ module.exports = {
             if (config.immigration.settings.blacklistedgroups.find(element => element == usera)) return interaction.reply({ content: 'This group is already on the blacklist.', ephemeral: true})
             const gObj = await roblox.getGroup(Number(gu)).catch(err => {
                 console.log(err)
-                return interaction.reply({ content: "An error occured while getting the group.", ephemeral: true})
+                return interaction.reply({ content: "An error occurred while getting the group.", ephemeral: true})
             })
             config.immigration.settings.blacklistedgroups.push(Number(gu))
             fs.writeFileSync('../config.json', JSON.stringify(config, null, 4))
@@ -51,7 +51,7 @@ module.exports = {
         } else if (arid.toLowerCase() == 'remove') {
             const gObj = await roblox.getGroup(Number(gu)).catch(err => {
                 console.log(err)
-                return interaction.reply({ content: "An error occured while getting the group.", ephemeral: true})
+                return interaction.reply({ content: "An error occurred while getting the group.", ephemeral: true})
             })
             if (!config.immigration.settings.distinguishment.list.find(element => element == uID)) {
                 return interaction.reply({ content: 'This group is not blacklisted.', ephemeral: true })
@@ -91,7 +91,7 @@ module.exports = {
         if (arid.toLowerCase() == 'add') {
             let uID = await roblox.getIdFromUsername(gu).catch(err => {
                 console.log(err)
-                return interaction.reply(`An error occured.`, { ephemeral: true })
+                return interaction.reply(`An error occurred.`, { ephemeral: true })
             })
             if (config.immigration.settings.blacklistedusers.find(element => element == gu)) {
                 return interaction.reply({ content: 'This user is already on the blacklist.', ephemeral: true })
@@ -103,7 +103,7 @@ module.exports = {
         } else if (arid.toLowerCase() == 'remove') {
                 let uID = await roblox.getIdFromUsername(gu).catch(err => {
                 console.log(err)
-                return interaction.reply({ content: `An error occured.`, ephemeral: true })
+                return interaction.reply({ content: `An error occurred.`, ephemeral: true })
             })
             let realname = await roblox.getUsernameFromId(uID)
             if (!config.immigration.settings.distinguishment.list.find(element => element == uID)) {

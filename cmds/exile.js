@@ -17,13 +17,13 @@ module.exports = {
         let group = interaction.options.getNumber('group')
         let username = interaction.options.getString('username')
         let uid = await roblox.getIdFromUsername(username).catch(err => {
-            return interaction.reply({ content: 'An error occured while getting this user\'s ID.', ephemeral: true })
+            return interaction.reply({ content: 'An error occurred while getting this user\'s ID.', ephemeral: true })
         })
         let ginfo = await roblox.getGroup(group).catch(err => {
-            return interaction.reply({ content: 'An error occured while getting the group.', ephemeral: true })
+            return interaction.reply({ content: 'An error occurred while getting the group.', ephemeral: true })
         })
         await roblox.exile(group, uid).catch(err => {
-            return interaction.reply({ content: 'An error occured while kicking the user.', ephemeral: true })
+            return interaction.reply({ content: 'An error occurred while kicking the user.', ephemeral: true })
         })
         let iEmbed = new discord.MessageEmbed()
             .setTitle(`Success`)

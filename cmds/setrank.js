@@ -29,7 +29,7 @@ module.exports = {
         let rankid = interaction.options.getNumber('rankid')
         let uID = await roblox.getIdFromUsername(username).catch(err => {
             console.log(err)
-            return interaction.reply({content: 'An error occured.', ephemeral: true})
+            return interaction.reply({content: 'An error occurred.', ephemeral: true})
         })
           let realname = await roblox.getUsernameFromId(uID)
           let myinfo = await roblox.getCurrentUser()
