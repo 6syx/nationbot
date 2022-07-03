@@ -10,6 +10,7 @@ module.exports = {
         .addStringOption(opt => 
             opt.setName('username')
             .setDescription(`User to be exiled.`)
+            .setRequired(true)
         ),
     category: "ranking",
     async execute(interaction) {

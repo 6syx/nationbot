@@ -5,6 +5,7 @@ const roblox = require('noblox.js')
 const fs = require('fs')
 const commandFiles = fs.readdirSync('./cmds').filter(file => file.endsWith('.js'));
 const config = require('./config.json')
+const ms = require('ms')
 
 client.commands = new discord.Collection()
 
@@ -130,7 +131,7 @@ setInterval(async () => {
 		}
 	  }
 	}
-}, config.immigration.settings.delay);
+}, ms(config.immigration.settings.delay));
 
 roblox.setCookie(process.env.COOKIE)
 client.login(process.env.TOKEN)
