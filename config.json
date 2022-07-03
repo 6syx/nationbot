@@ -7,6 +7,7 @@
         "logchannel": "870919690808094730",
         "settings": {
             "agelimit": 0,
+            "delay": 1000,
             "blacklistedgroups": [],
             "blacklistedusers": [],
             "comment": "Toggle immigration below. It can also be turned on and off through the bot itself. Above list is formatted by user IDs.",

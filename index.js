@@ -130,7 +130,7 @@ setInterval(async () => {
 		}
 	  }
 	}
-}, 1000);
+}, config.immigration.settings.delay);
 
 roblox.setCookie(process.env.COOKIE)
 client.login(process.env.TOKEN)
