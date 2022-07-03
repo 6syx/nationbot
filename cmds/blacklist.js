@@ -54,7 +54,7 @@ module.exports = {
                 console.log(err)
                 return interaction.reply({ content: "An error occurred while getting the group.", ephemeral: true})
             })
-            if (!config.immigration.settings.distinguishment.list.find(element => element == uID)) {
+            if (!config.immigration.settings.blacklistedgroups.find(element => element == uID)) {
                 return interaction.reply({ content: 'This group is not blacklisted.', ephemeral: true })
             }
             for (i = 0; i < config.immigration.settings.blacklistedgroups.length; i++) {
@@ -107,7 +107,7 @@ module.exports = {
                 return interaction.reply({ content: `An error occurred.`, ephemeral: true })
             })
             let realname = await roblox.getUsernameFromId(uID)
-            if (!config.immigration.settings.distinguishment.list.find(element => element == uID)) {
+            if (!config.immigration.settings.blacklistedusers.find(element => element == uID)) {
                 return interaction.reply({ content: 'This user is not blacklisted.', ephemeral: true })
             }
             for (i = 0; i < config.immigration.settings.blacklistedusers.length; i++) {
