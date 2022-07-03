@@ -41,7 +41,9 @@ module.exports = {
         if (!config.management.administrators.find(s => s == usera) && !config.management.lowerusers.find(s => s == usera)) return interaction.reply({ content: "You are not whitelisted to use this bot's administrative functions. Contact its owner if you feel this is a mistake.", ephemeral: true})
         if (guid.toLowerCase() == 'groups') {
         if (arid.toLowerCase() == 'add') {
-            if (config.immigration.settings.blacklistedgroups.find(element => element == usera)) return interaction.reply({ content: 'This group is already on the blacklist.', ephemeral: true})
+            if (config.immigration.settings.blacklistedgroups.find(element => element == gu)) {
+                return interaction.reply({ content: 'This group is already on the blacklist.', ephemeral: true})
+            }
             const gObj = await roblox.getGroup(Number(gu)).catch(err => {
                 console.log(err)
                 return interaction.reply({ content: "An error occurred while getting the group.", ephemeral: true})
@@ -54,7 +56,7 @@ module.exports = {
                 console.log(err)
                 return interaction.reply({ content: "An error occurred while getting the group.", ephemeral: true})
             })
-            if (!config.immigration.settings.blacklistedgroups.find(element => element == uID)) {
+            if (!config.immigration.settings.blacklistedgroups.find(element => element == gu)) {
                 return interaction.reply({ content: 'This group is not blacklisted.', ephemeral: true })
             }
             for (i = 0; i < config.immigration.settings.blacklistedgroups.length; i++) {
@@ -94,7 +96,7 @@ module.exports = {
                 console.log(err)
                 return interaction.reply(`An error occurred.`, { ephemeral: true })
             })
-            if (config.immigration.settings.blacklistedusers.find(element => element == gu)) {
+            if (config.immigration.settings.blacklistedusers.find(element => element == uID)) {
                 return interaction.reply({ content: 'This user is already on the blacklist.', ephemeral: true })
             }
             let realname = await roblox.getUsernameFromId(uID)
