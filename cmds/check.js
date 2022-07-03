@@ -36,13 +36,15 @@ module.exports = {
 		}
         for (f = 0; f < blacklistedusers.length; f++) {
             if (blacklistedusers[f] == uid) {
-                await roblox.setRank(config.groupid, uid, Number(config.immigration.failrank))
-                let iEmbed = new discord.MessageEmbed()
-                    .setTitle('Fail')
-                    .setColor('RED')
-                    .setDescription(`${realname} is a blacklisted user and has been successfully detained.`)
-                    .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${uID}&width=420&height=420&format=png`)
-                client.channels.cache.get(config.immigration.logchannel).send({embeds: [iEmbed]})
+                if (await roblox.getRankInGroup(config.groupid, uid) >= 1) {
+                    await roblox.setRank(config.groupid, uid, Number(config.immigration.failrank))
+                    let iEmbed = new discord.MessageEmbed()
+                        .setTitle('Fail')
+                        .setColor('RED')
+                        .setDescription(`${realname} is a blacklisted user and has been successfully detained.`)
+                        .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${uID}&width=420&height=420&format=png`)
+                    client.channels.cache.get(config.immigration.logchannel).send({embeds: [iEmbed]})
+                }
                 return interaction.reply({ content: 'This user is a blacklisted individual and deemed ineligible for immigration.', ephemeral: true })
             }
         }
@@ -55,35 +57,41 @@ module.exports = {
 		}
         if (config.immigration.settings.majororganization.enabled == true) {
             if (await roblox.getRankInGroup(config.immigration.settings.majororganization.groupid, uID) >= config.immigration.settings.majororganization.org_rank_id) {
-            await roblox.setRank(config.groupid, uid, Number(config.immigration.settings.majororganization.your_foreign_rank_id))
-            let iEmbed = new discord.MessageEmbed()
-                .setTitle('Success')
-                .setColor('GREEN')
-                .setDescription(`${immigrants[i].username} was found as a representative from the United Nations and has been ranked to Foreign Representative.`)
-                .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${uID}&width=420&height=420&format=png`)
-            client.channels.cache.get(config.immigration.logchannel).send({ embeds: [iEmbed] })
-            return interaction.reply({ content: 'This user is a foreign representative and has been ranked accordingly.', ephemeral: true })
+                if (await roblox.getRankInGroup(config.groupid, uid) >= 1) {
+                    await roblox.setRank(config.groupid, uid, Number(config.immigration.settings.majororganization.your_foreign_rank_id))
+                    let iEmbed = new discord.MessageEmbed()
+                        .setTitle('Success')
+                        .setColor('GREEN')
+                        .setDescription(`${immigrants[i].username} was found as a representative from the United Nations and has been ranked to Foreign Representative.`)
+                        .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${uID}&width=420&height=420&format=png`)
+                    client.channels.cache.get(config.immigration.logchannel).send({ embeds: [iEmbed] })
+                }
+                return interaction.reply({ content: 'This user is a foreign representative and has been ranked accordingly.', ephemeral: true })
             }
         }
         const player = await roblox.getPlayerInfo(uid)
         if (player.age <= config.immigration.settings.agelimit) {
-            await roblox.setRank(config.groupid, uid, config.immigration.failedrank)
-            let iEmbed = new discord.MessageEmbed()
-                .setTitle('Fail')
-                .setColor('RED')
-                .setDescription(`${realname} is underage on Roblox and has been successfully detained.`)
-                .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${uID}&width=420&height=420&format=png`)
-            client.channels.cache.get(config.immigration.logchannel).send({ embeds: [iEmbed] })
+            if (await roblox.getRankInGroup(config.groupid, uid) >= 1) {
+                await roblox.setRank(config.groupid, uid, config.immigration.failedrank)
+                let iEmbed = new discord.MessageEmbed()
+                    .setTitle('Fail')
+                    .setColor('RED')
+                    .setDescription(`${realname} is underage on Roblox and has been successfully detained.`)
+                    .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${uID}&width=420&height=420&format=png`)
+                client.channels.cache.get(config.immigration.logchannel).send({ embeds: [iEmbed] })
+            }
             interaction.reply({ content: 'This user has been caught as underage and has been deemed ineligible for immigration.', ephemeral: true })
         }
         if (failedcheck == true) {
-            await roblox.setRank(config.groupid, uid, Number(config.immigration.failedrank))
-            let iEmbed = new discord.MessageEmbed()
-                .setTitle('Fail')
-                .setColor('RED')
-                .setDescription(`${realname} was caught in ${blacklistedgroups1} blacklisted groups and successfully detained.`)
-                .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${uID}&width=420&height=420&format=png`)
-            client.channels.cache.get(config.immigration.logchannel).send({embeds: [iEmbed]})
+            if (await roblox.getRankInGroup(config.groupid, uid) >= 1) {
+                await roblox.setRank(config.groupid, uid, Number(config.immigration.failedrank))
+                let iEmbed = new discord.MessageEmbed()
+                    .setTitle('Fail')
+                    .setColor('RED')
+                    .setDescription(`${realname} was caught in ${blacklistedgroups1} blacklisted groups and successfully detained.`)
+                    .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${uID}&width=420&height=420&format=png`)
+                client.channels.cache.get(config.immigration.logchannel).send({embeds: [iEmbed]})
+            }
             interaction.reply({ content: 'This user has been caught in blacklisted groups and deemed ineligible for immigration.', ephemeral: true })
         } else {
             interaction.reply({ content: 'This user has been checked and is deemed eligible for immigration.', ephemeral: true })
