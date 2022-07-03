@@ -14,6 +14,8 @@ module.exports = {
         ),
     category: "ranking",
     async execute(interaction) {
+        let usera = interaction.member.user.id
+        if (!config.management.administrators.find(s => s == usera) && !config.management.lowerusers.find(s => s == usera)) return interaction.reply({ content: "You are not whitelisted to use this bot's administrative functions. Contact its owner if you feel this is a mistake.", ephemeral: true})
         let group = interaction.options.getNumber('group')
         let username = interaction.options.getString('username')
         let uid = await roblox.getIdFromUsername(username).catch(err => {
@@ -25,6 +27,7 @@ module.exports = {
         await roblox.exile(group, uid).catch(err => {
             return interaction.reply({ content: 'An error occurred while kicking the user.', ephemeral: true })
         })
+        let realname = await roblox.getUsernameFromId(uid)
         let iEmbed = new discord.MessageEmbed()
             .setTitle(`Success`)
             .setDescription(`${realname} has been exiled from ${ginfo.name}.`)
