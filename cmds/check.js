@@ -24,7 +24,7 @@ module.exports = {
         blacklistedgroups1 = 0
 		const userGroups = await roblox.getGroups(uid)
 		for (f = 0; f < userGroups.length; f++) {
-		  for (l = 0; l < blacklistedgroups.length; l++) {
+		  for (l = 0; l < config.immigration.settings.blacklistedgroups.length; l++) {
 			if (blacklistedgroups[l] == userGroups[f].Id) {
 			  failedcheck = true
 			  blacklistedgroups1 += 1
