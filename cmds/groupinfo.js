@@ -25,5 +25,6 @@ module.exports = {
             )
             .setThumbnail(logo)
             .setTimestamp()
+        return interaction.reply({ embeds: [info], ephemeral: true })
     }
 }
