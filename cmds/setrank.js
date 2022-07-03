@@ -38,7 +38,7 @@ module.exports = {
           await roblox.setRank(Number(key), uID, Number(rankid))
           let iEmbed = new discord.MessageEmbed()
             .setTitle(`Success`)
-            .setDescription(`${realname} has been ranked to ${await roblox.getRole(Number(key), Number(rankid)).get('name')} in ${groupObj.name}.`)
+            .setDescription(`${realname} has been ranked to ${await roblox.getRole(Number(key), Number(rankid)).name} in ${groupObj.name}.`)
             .setColor('GREEN')
             .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${uID}&width=420&height=420&format=png`)
             .setTimestamp()
