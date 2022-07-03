@@ -7,7 +7,7 @@ const fs = require('fs')
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('distinguish')
-        .setDescription('Change the distinguihsment status of a user.')
+        .setDescription('Change the distinguishment status of a user.')
         .addStringOption(opt =>
             opt.setName(`action`)
             .setDescription('Action to take on the user.')
