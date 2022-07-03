@@ -25,4 +25,4 @@ You are able to host this bot on your own computer, however it is not recommende
 
 If you click this button, it will create a version of nation bot in repl. Configure the config as you'd like and then run it. It will open a link in the top right.
 Head to [UptimeRobot](https://uptimerobot.com) and make an account if you don't have one. Put your bot in as an HTTP monitor set to check every 5 minutes.
-![thing](https://dont-care.didnt-ask.xyz/F15LgBz3)
+![thing](https://cdn.upload.systems/uploads/F15LgBz3.png)
