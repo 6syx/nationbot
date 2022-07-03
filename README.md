@@ -41,7 +41,7 @@ If you click this button, it will create a version of nation bot in repl.
 Configure the config as you'd like and then run it. It will open a link in the top right.
 In repl, the .env file will be hidden on the left bar as its own tab. You will have to input the COOKIE and TOKEN keys again.
 
-**YOU WILL NEED TO RUN THE UPGRADE SCRIPT WHEN CREATING THE REPL. To do this, copy and paste the contents of the `repl-upgrade.sh` file into the Shell tab on the right. To run this project, you will need to type `npm start` rather than using the "Run" button.** HUGE shoutout to repl for not updating their version of node.js 👏
+repl wont let you run this because they're too downgraded, workaround soon
 
 ![repl .env](https://cdn.upload.systems/uploads/WPbmUgy2.png)
 
