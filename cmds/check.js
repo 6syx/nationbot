@@ -14,7 +14,7 @@ module.exports = {
         ),
     category: "immigration",
     async execute(interaction) {
-        let user = interaction.options.getString('check')
+        let user = interaction.options.getString('username')
         let usera = interaction.member.user.id
         let uid = await roblox.getIdFromUsername(user)
         if (config.immigration.enabled == false) return interaction.reply({ content: `Immigration is disabled. Re-enable it in the bot's config.`, ephemeral: true })
