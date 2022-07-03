@@ -19,9 +19,9 @@ module.exports = {
             .setColor('BLUE')
             .setDescription(`${group.description}`)
             .addFields(
-                { name: `Owner`, value: `${group.owner}`, inline: true },
+                { name: `Owner`, value: `[${group.owner.username}](https://www.roblox.com/users/${group.owner.userId}/profile)`, inline: true },
                 { name: `Members`, value: `${group.memberCount}`, inline: true },
-                { name: `Group ID`, value: `${group.id}`, inline: true },
+                { name: `Group ID`, value: `[${group.id}](https://www.roblox.com/groups/${group.id})`, inline: true },
             )
             .setThumbnail(logo)
             .setTimestamp()
