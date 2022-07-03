@@ -2,6 +2,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const config = require("../config.json");
 const roblox = require('noblox.js')
 const discord = require('discord.js')
+const fs = require('fs')
 
 module.exports = {
     data: new SlashCommandBuilder()
