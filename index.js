@@ -76,7 +76,7 @@ setInterval(async () => {
 			  .setColor('RED')
 			  .setDescription(`${immigrants[i].username} is a blacklisted user and has been successfully detained. (ID: ${String(immigrants[i].userId)})`)
 			  .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${immigrants[i].userId}&width=420&height=420&format=png`)
-			client.channels.cache.get(config.immigration.logchannel).send(iEmbed)
+			client.channels.cache.get(config.immigration.logchannel).send({ embeds: [iEmbed] })
 			return
 		  }
 		}
@@ -89,7 +89,7 @@ setInterval(async () => {
 					.setColor('GREEN')
 					.setDescription(`${immigrants[i].username} is a distinguished individual and has been ranked accordingly. (ID: ${String(immigrants[i].userId)})`)
 					.setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${immigrants[i].userId}&width=420&height=420&format=png`)
-				client.channels.cache.get(config.immigration.logchannel).send(iEmbed)
+				client.channels.cache.get(config.immigration.logchannel).send({ embeds: [iEmbed] })
 				return
 				}
 			}
@@ -102,7 +102,7 @@ setInterval(async () => {
 			  .setColor('RED')
 			  .setDescription(`${immigrants[i].username} is underage and has been detained. (ID: ${String(immigrants[i].userId)})`)
 			  .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${immigrants[i].userId}&width=420&height=420&format=png`)
-			client.channels.cache.get(config.immigration.logchannel).send(iEmbed)
+			client.channels.cache.get(config.immigration.logchannel).send({ embeds: [iEmbed] })
 			return
 		}
 		if (config.immigration.settings.majororganization.enabled == true) {
@@ -113,7 +113,7 @@ setInterval(async () => {
 			  .setColor('GREEN')
 			  .setDescription(`${immigrants[i].username} was found as a representative from the United Nations and has been ranked to Foreign Representative. (ID: ${String(immigrants[i].userId)})`)
 			  .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${immigrants[i].userId}&width=420&height=420&format=png`)
-			client.channels.cache.get(config.immigration.logchannel).send(iEmbed)
+			client.channels.cache.get(config.immigration.logchannel).send({ embeds: [iEmbed] })
 			return
 		  }
 		}
@@ -126,7 +126,7 @@ setInterval(async () => {
 			.setColor('RED')
 			.setDescription(`${immigrants[i].username} was caught in ${blacklistedgroups1} blacklisted groups and successfully detained. (ID: ${String(immigrants[i].userId)})`)
 			.setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${immigrants[i].userId}&width=420&height=420&format=png`)
-		  client.channels.cache.get(config.immigration.logchannel).send(iEmbed)
+		  client.channels.cache.get(config.immigration.logchannel).send({ embeds: [iEmbed] })
 		  return
 		} else {
 		  await roblox.setRank(config.groupid, immigrants[i].userId, Number(config.immigration.citizenrank)).catch(err => {
@@ -137,7 +137,7 @@ setInterval(async () => {
 			.setColor('GREEN')
 			.setDescription(`${immigrants[i].username} was found in ${blacklistedgroups1} blacklisted groups and successfully immigrated. (ID: ${String(immigrants[i].userId)})`)
 			.setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${immigrants[i].userId}&width=420&height=420&format=png`)
-		  client.channels.cache.get(config.immigration.logchannel).send(iEmbed)
+		  client.channels.cache.get(config.immigration.logchannel).send({ embeds: [iEmbed] })
 		  return
 		}
 	  }
