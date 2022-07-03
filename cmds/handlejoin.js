@@ -27,13 +27,19 @@ module.exports = {
         if (config.ranking.enabled == false) return interaction.reply({ content: `Ranking is currently not enabled. Please enable it in the bot's config.`, ephemeral: true })
         let groupObj = await roblox.getGroup(Number(key))
         let uID = await roblox.getIdFromUsername(username).catch(err => {
-            return interaction.reply({ content: 'An error occured.', ephemeral: true })
+            return interaction.reply({ content: 'An error occured while getting the user\'s ID.', ephemeral: true })
         })
-        let joinreq = await roblox.getJoinRequest(key, uID)
+        let joinreq = await roblox.getJoinRequest(key, uID).catch(err => {
+            return interaction.reply({ content: 'An error occured while getting the join request.', ephemeral: true })
+        })
         if (!joinreq) return interaction.reply({ content: `This user is not pending.`, ephemeral: true })
-        let realname = await roblox.getUsernameFromId(uID)
+        let realname = await roblox.getUsernameFromId(uID).catch(err => {
+            return interaction.reply({ content: 'An error occured while getting the user\'s proper username.', ephemeral: true })
+        })
         if (status == true) {
-            await roblox.handleJoinRequest(Number(key), uID, true)
+            await roblox.handleJoinRequest(Number(key), uID, true).catch(err => {
+                return interaction.reply({ content: 'An error occured while accepting the join request.', ephemeral: true })
+            })
             let iEmbed = new discord.MessageEmbed()
                 .setTitle(`Success`)
                 .setDescription(`${realname} has been accepted into ${groupObj.name}.`)
@@ -42,7 +48,9 @@ module.exports = {
                 .setTimestamp()
             interaction.reply({ embeds: [iEmbed], ephemeral: true })
         } else {
-            await roblox.handleJoinRequest(Number(key), uID, false)
+            await roblox.handleJoinRequest(Number(key), uID, false).catch(err => {
+                return interaction.reply({ content: 'An error occured while denying the join request.', ephemeral: true })
+            })
             let iEmbed = new discord.MessageEmbed()
                 .setTitle(`Success`)
                 .setDescription(`${realname} has been denied from joining ${groupObj.name}.`)

@@ -37,14 +37,16 @@ module.exports = {
             if (config.immigration.settings.distinguishment.list.find(element => element == uID)) {
                 return interaction.reply({ content: 'This user is already distinguished.', ephemeral: true })
             }
-            let realname = await roblox.getUsernameFromId(uID)
+            let realname = await roblox.getUsernameFromId(uID).catch(err => {
+                return interaction.reply({ content: 'An error occured while getting this user\'s ID.', ephemeral: true })
+            })
             config.immigration.settings.distinguishment.list.push(Number(uID))
             fs.writeFileSync('../config.json', JSON.stringify(config, null, 4))
             return interaction.reply({ content: `${realname} (${uID}) has been noted as a distinguished user.`, ephemeral: true })
         } else if (arid == 'remove') {
             let uID = await roblox.getIdFromUsername(gu).catch(err => {
                 console.log(err)
-                return interaction.reply(`An error occured.`, { ephemeral: true })
+                return interaction.reply(`An error occured while getting this user\'s proper name.`, { ephemeral: true })
             })
             if (!config.immigration.settings.distinguishment.list.find(element => element == uID)) {
                 return interaction.reply({ content: 'This user is not distinguished.', ephemeral: true })
