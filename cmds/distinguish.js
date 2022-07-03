@@ -41,7 +41,7 @@ module.exports = {
                 return interaction.reply({ content: 'An error occurred while getting this user\'s ID.', ephemeral: true })
             })
             config.immigration.settings.distinguishment.list.push(Number(uID))
-            fs.writeFileSync('../config.json', JSON.stringify(config, null, 4))
+            fs.writeFileSync('./config.json', JSON.stringify(config, null, 4))
             return interaction.reply({ content: `${realname} (${uID}) has been noted as a distinguished user.`, ephemeral: true })
         } else if (arid == 'remove') {
             let uID = await roblox.getIdFromUsername(gu).catch(err => {
@@ -57,7 +57,7 @@ module.exports = {
                     config.immigration.settings.distinguishment.list.splice(i, 1)
                 }
             }
-            fs.writeFileSync('../config.json', JSON.stringify(config, null, 4))
+            fs.writeFileSync('./config.json', JSON.stringify(config, null, 4))
             return interaction.reply({ content: `${realname} (${uID}) has been removed from the distinguishment list.`, ephemeral: true })
         } else if (arid == 'view') {
             beginstr = `Here are all users distinguished in your group:\n\n`

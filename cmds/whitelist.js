@@ -30,7 +30,7 @@ module.exports = {
         if (action == 'add') {
             if (config.management.administrators.find(element => element == user.id) || config.management.lowerusers.find(element => element == user.id)) return interaction.reply({ content: "This user is already whitelisted.", ephemeral: true})
             config.management.lowerusers.push(user.id)
-            fs.writeFileSync('../config.json', JSON.stringify(config, null, 4))
+            fs.writeFileSync('./config.json', JSON.stringify(config, null, 4))
             return interaction.reply({ content: `${user} has been added to the whitelist.`, ephemeral: true })
         } else if (action == 'remove') {
             if (!config.management.lowerusers.find(element => element == user.id)) return interaction.reply({ content: "This user is not whitelisted.", ephemeral: true})
@@ -39,7 +39,7 @@ module.exports = {
                     config.management.lowerusers.splice(i, 1)
                 }
             }
-            fs.writeFileSync('../config.json', JSON.stringify(config, null, 4))
+            fs.writeFileSync('./config.json', JSON.stringify(config, null, 4))
             return interaction.reply({ content: `${user} has been removed from the whitelist.`, ephemeral: true })
         } else if (action == 'view') {
             beginstr = `Here are all users whitelisted in your bot:\n\n**ADMINS:**\n`

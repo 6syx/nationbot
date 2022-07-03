@@ -19,11 +19,11 @@ module.exports = {
         if (config.immigration.enabled == false) return interaction.reply({ content: `Immigration is disabled. Re-enable it in the bot's config.`, ephemeral: true })
         if (bool == true) {
             config.immigration.settings.toggle = true
-            fs.writeFileSync('../config.json', JSON.stringify(config, null, 4))
+            fs.writeFileSync('./config.json', JSON.stringify(config, null, 4))
             interaction.reply({ content: `Immigration has been toggled on.`})
         } else {
             config.immigration.settings.toggle = false
-            fs.writeFileSync('../config.json', JSON.stringify(config, null, 4))
+            fs.writeFileSync('./config.json', JSON.stringify(config, null, 4))
             interaction.reply({ content: `Immigration has been toggled off.`})
         }
     }
