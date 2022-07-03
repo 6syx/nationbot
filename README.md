@@ -37,12 +37,13 @@ You are able to host this bot on your own computer, however it is not recommende
 
 [![Run on Replit](https://raw.githubusercontent.com/BinBashBanana/deploy-buttons/master/buttons/remade/replit.svg)](https://replit.com/github/paraanoia/nationbot)
 
-If you click this button, it will create a version of nation bot in repl. Configure the config as you'd like and then run it. It will open a link in the top right.
+If you click this button, it will create a version of nation bot in repl.
+Configure the config as you'd like and then run it. It will open a link in the top right.
 In repl, the .env file will be hidden on the left bar as its own tab. You will have to input the COOKIE and TOKEN keys again.
 
-![repl .env](https://cdn.upload.systems/uploads/WPbmUgy2.png)
+**YOU WILL NEED TO RUN THE UPGRADE SCRIPT WHEN CREATING THE REPL. TO DO THIS, COPY AND PASTE THE CONTENTS OF THE `repl-upgrade.sh` file and paste it into the Console tab on the right.**
 
-update: i learned this probably wont work for a while since repl has a lower node version 🥶🥶
+![repl .env](https://cdn.upload.systems/uploads/WPbmUgy2.png)
 
 Head to [UptimeRobot](https://uptimerobot.com) and make an account if you don't have one. Put your bot in as an HTTP monitor set to check every 5 minutes.
 
