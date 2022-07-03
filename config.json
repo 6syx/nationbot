@@ -1,10 +1,10 @@
 {
-    "groupid": 14774667,
-    "clientid": "979856115779129354",
-    "guildid": "804877486521319455",
+    "groupid": 1234567,
+    "clientid": "123456789012345678",
+    "guildid": "123456789012345678",
     "immigration": {
         "enabled": true,
-        "logchannel": "870919690808094730",
+        "logchannel": "123456789012345678",
         "settings": {
             "agelimit": 0,
             "delay": "1m",
@@ -21,30 +21,32 @@
             "majororganization": {
                 "comment": "This category can be used for any organization you want to majorly recognize. You can only recognize one, so it is suggested to place your current United Nations here.",
                 "enabled": false,
-                "groupid": 4043053,
+                "groupid": 1234567,
                 "org_rank_id": 2,
                 "your_foreign_rank_id": 5
             }
         },
-        "immigrantrank": 83568612,
-        "failedrank": 20,
-        "citizenrank": 20
+        "immigrantrank": 12345678,
+        "failedrank": 12,
+        "citizenrank": 12
     },
     "ranking": {
         "enabled": true,
-        "comment": "You can add as many keys as you want. You can copy and paste the default one, but they should be seperated by commas. You will need to reinput your groupid from above as the main group ID.",
+        "comment": "You can add as many groups as you want. You can copy and paste the default one, but they should be seperated by commas. You will need to reinput your groupid from above as the main group ID.",
         "keys": {
-            "main": 14774667,
-            "army": 2831233
+            "main": 1234567,
+            "army": 1234567
         }
     },
     "management": {
         "comment": "These go by Discord user IDs. Administrators can only be added through the script, so choose wisely.",
         "administrators": [
-            "309803507249315852"
+            "123456789012345678",
+            "123456789012345678"
         ],
         "lowerusers": [
-
+            "123456789012345678",
+            "123456789012345678"
         ]
     }
 }
