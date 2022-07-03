@@ -22,9 +22,11 @@ module.exports = {
         if (!uid) return interaction.reply(`This user does not exist on Roblox.`, { ephemeral: true })
         if (!config.management.administrators.find(s => s == usera) && !config.management.lowerusers.find(s => s == usera)) return interaction.reply({ content: "You are not whitelisted to use this bot's administrative functions. Contact its owner if you feel this is a mistake.", ephemeral: true})
         blacklistedgroups1 = 0
+        let blacklistedgroups = config.immigration.settings.blacklistedgroups
+        let blacklistedusers = config.immigration.settings.blacklistedusers
 		const userGroups = await roblox.getGroups(uid)
 		for (f = 0; f < userGroups.length; f++) {
-		  for (l = 0; l < config.immigration.settings.blacklistedgroups.length; l++) {
+		  for (l = 0; l < blacklistedgroups.length; l++) {
 			if (blacklistedgroups[l] == userGroups[f].Id) {
 			  failedcheck = true
 			  blacklistedgroups1 += 1
