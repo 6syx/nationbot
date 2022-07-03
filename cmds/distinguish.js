@@ -67,7 +67,7 @@ module.exports = {
                 beginstr += `- \`${name}\` (${String(list[i])})\n`
             }
             const iEmbed = new discord.MessageEmbed()
-                .setTitle(`Blacklisted Users`)
+                .setTitle(`Distinguished Users`)
                 .setDescription(beginstr)
                 .setColor('BLUE')
                 .setTimestamp()
