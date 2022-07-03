@@ -24,7 +24,7 @@ Open this account in a new Google Chrome profile. Logging out invalidates the CO
 
 ![ctrl+shift+i menu](https://i.imgur.com/wtawQ5N.png)
 
-To obtain a discord bot token, head to the [Discord Developer Portal](https://discord.dev) and create a new application. Under the bot tab, you will be able to create a bot application. Client ID should be there and you can regenerate the token.
+To obtain a discord bot token, head to the [Discord Developer Portal](https://discord.dev) and create a new application. Under the bot tab, you will be able to create a bot application. Client ID should be there and you can regenerate the token. Enable the Server Member intent too please 😁
 
 ## Getting roleset IDs
 
