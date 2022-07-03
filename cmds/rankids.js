@@ -9,6 +9,8 @@ module.exports = {
         .setDescription(`Display a group's rank IDs.`),
     category: 'ranking',
     async execute(interaction) {
+        let usera = interaction.member.user.id
+        if (!config.management.administrators.find(s => s == usera) && !config.management.lowerusers.find(s => s == usera)) return interaction.reply({ content: "You are not whitelisted to use this bot's administrative functions. Contact its owner if you feel this is a mistake.", ephemeral: true})
         let key = interaction.options.getNumber('group')
         const getRoles = await roblox.getRoles(Number(key))
         const group = await roblox.getGroup(key)
