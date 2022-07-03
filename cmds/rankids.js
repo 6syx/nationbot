@@ -11,10 +11,14 @@ module.exports = {
     async execute(interaction) {
         let key = interaction.options.getNumber('group')
         const getRoles = await roblox.getRoles(Number(key))
-        const formattedRoles = getRoles.map((r) => `\`${r.name}\` - Rank ID: **${r.rank}**`);
+        const group = await roblox.getGroup(key)
+        let beginstr = 'Here are all your ranks:\n\n'
+        for (i = 0; i < getRoles.length; i++) {
+            beginstr += `\`${getRoles[i].name}\` - Rank ID: **${getRoles[i].rank}**\n`
+        }
         const rankListEmbed = new discord.MessageEmbed()
-            .setTitle('Here are all your ranks:')
-            .setDescription(formattedRoles)
+            .setTitle(`Group Ranks in ${group.name}`)
+            .setDescription(beginstr)
             .setColor('BLUE')
             .setTimestamp()
         interaction.reply({ embeds: [rankListEmbed], ephemeral: true })
