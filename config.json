@@ -40,7 +40,7 @@
     "management": {
         "comment": "These go by Discord user IDs. Administrators can only be added through the script, so choose wisely.",
         "administrators": [
-
+            "309803507249315852"
         ],
         "lowerusers": [
 

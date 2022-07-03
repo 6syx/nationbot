@@ -17,7 +17,8 @@ for (const file of commandFiles) {
 
 client.once('ready', async () => {
 	let userinfo = await roblox.getCurrentUser()
-	console.log(userinfo)
+	let group = await roblox.getGroup(config.groupid)
+	client.user.setActivity(`over ${group.name}`, { type: "WATCHING" })
     console.log(`Logged in as:\n\nDiscord: ${client.user.tag} (${client.user.id})\nRoblox: ${userinfo.UserName} (${userinfo.UserID})`)
 	client.guilds.cache.get(config.guildid).members.fetch()
 })

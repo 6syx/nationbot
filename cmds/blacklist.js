@@ -37,21 +37,21 @@ module.exports = {
         let guid = interaction.options.getString('category')
         let arid = interaction.options.getString('action')
         let gu = interaction.options.getString('user-or-group')
-        if (!config.management.administrators[usera] && !config.management.lowerusers[usera]) return interaction.reply("You are not whitelisted to use this bot's administrative functions. Contact its owner if you feel this is a mistake.", {ephemeral: true})
+        if (!config.management.administrators.find(s => s == usera) && !config.management.lowerusers.find(s => s == usera)) return interaction.reply({ content: "You are not whitelisted to use this bot's administrative functions. Contact its owner if you feel this is a mistake.", ephemeral: true})
         if (guid.toLowerCase() == 'groups') {
         if (arid.toLowerCase() == 'add') {
-            if (config.immigration.settings.blacklistedgroups.find(element => element == usera)) return interaction.reply('This group is already on the blacklist.', {ephemeral: true})
+            if (config.immigration.settings.blacklistedgroups.find(element => element == usera)) return interaction.reply({ content: 'This group is already on the blacklist.', ephemeral: true})
             const gObj = await roblox.getGroup(Number(gu)).catch(err => {
                 console.log(err)
-                return interaction.reply("An error occured while getting the group.", {ephemeral: true})
+                return interaction.reply({ content: "An error occured while getting the group.", ephemeral: true})
             })
             config.immigration.settings.blacklistedgroups.push(Number(gu))
             fs.writeFileSync('../config.json', JSON.stringify(config, null, 4))
-            return interaction.reply(`${gObj.name} (${gu}) has been added to the immigration blacklist.`, {ephemeral: true})
+            return interaction.reply({ content: `${gObj.name} (${gu}) has been added to the immigration blacklist.`, ephemeral: true})
         } else if (arid.toLowerCase() == 'remove') {
             const gObj = await roblox.getGroup(Number(gu)).catch(err => {
                 console.log(err)
-                return interaction.reply("An error occured while getting the group.", {ephemeral: true})
+                return interaction.reply({ content: "An error occured while getting the group.", ephemeral: true})
             })
             for (i = 0; i < config.immigration.settings.blacklistedgroups.length; i++) {
                 if (config.immigration.settings.blacklistedgroups[i] == Number(gu)) {
@@ -59,7 +59,7 @@ module.exports = {
                 }
             }
             fs.writeFileSync('../config.json', JSON.stringify(config, null, 4))
-            return interaction.reply(`${gObj.name} (${gu}) has been removed from the immigration blacklist if they were on it.`, {ephemeral: true})
+            return interaction.reply({ content: `${gObj.name} (${gu}) has been removed from the immigration blacklist if they were on it.`, ephemeral: true})
         } else if (arid.toLowerCase() == 'view') {
             beginstr = `Here are all groups blacklisted in your bot:\n\n`
             for (i = 0; i < config.immigration.settings.blacklistedgroups.length; i++) {
@@ -82,7 +82,7 @@ module.exports = {
                 .setTimestamp()
             return interaction.reply({ embeds: [iEmbed] }, { ephemeral: true })
         } else {
-            return interaction.reply(`Second argument must be either \`add\`, \`remove\`, or \`view\`.`, { ephemeral: true })
+            return interaction.reply({ content: `Second argument must be either \`add\`, \`remove\`, or \`view\`.`, ephemeral: true })
         }
         } else if (guid.toLowerCase() == 'users') {
         if (arid.toLowerCase() == 'add') {
@@ -91,7 +91,7 @@ module.exports = {
                 return interaction.reply(`An error occured.`, { ephemeral: true })
             })
             if (config.immigration.settings.blacklistedusers.find(element => element == uID)) {
-                return interaction.reply('This user is already on the blacklist.', { ephemeral: true })
+                return interaction.reply({ content: 'This user is already on the blacklist.', ephemeral: true })
             }
             let realname = await roblox.getUsernameFromId(uID)
             config.immigration.settings.blacklistedusers.push(Number(uID))
@@ -100,7 +100,7 @@ module.exports = {
         } else if (arid.toLowerCase() == 'remove') {
                 let uID = await roblox.getIdFromUsername(gu).catch(err => {
                 console.log(err)
-                return interaction.reply(`An error occured.`, { ephemeral: true })
+                return interaction.reply({ content: `An error occured.`, ephemeral: true })
             })
             let realname = await roblox.getUsernameFromId(uID)
             for (i = 0; i < config.immigration.settings.blacklistedusers.length; i++) {
@@ -109,7 +109,7 @@ module.exports = {
                 }
             }
             fs.writeFileSync('../config.json', JSON.stringify(config, null, 4))
-            return interaction.reply(`${realname} (${uID}) has been removed from the immigration blacklist if they were on it.`, { ephemeral: true })
+            return interaction.reply({ content: `${realname} (${uID}) has been removed from the immigration blacklist if they were on it.`, ephemeral: true })
         } else if (arid.toLowerCase() == 'view') {
             beginstr = `Here are all users blacklisted in your bot:\n\n`
             for (i = 0; i < config.immigration.settings.blacklistedusers.length; i++) {
@@ -124,10 +124,10 @@ module.exports = {
                 .setTimestamp()
             return interaction.reply({embeds: [iEmbed], ephemeral: true })
         } else {
-            return interaction.reply(`Second argument must be either \`add\`, \`remove\`, or \`view\`.`, { ephemeral: true })
+            return interaction.reply({ content: `Second argument must be either \`add\`, \`remove\`, or \`view\`.`, ephemeral: true })
         }
         } else {
-            return interaction.reply(`First argument must be either \`groups\` or \`users\`.`, { ephemeral: true })
+            return interaction.reply({ content: `First argument must be either \`groups\` or \`users\`.`, ephemeral: true })
         }
     }
 }

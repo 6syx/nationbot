@@ -21,33 +21,33 @@ module.exports = {
         .addStringOption(opt =>
             opt.setName('username')
             .setDescription('Only applicable to the add/remove actions. Roblox username of the person you want to distinguish.')
-            .setRequired(true)
         ),
     category: "distinguished",
     async execute(interaction) {
-        if (!config.management.administrators[usera] && !config.management.lowerusers[usera]) return interaction.reply("You are not whitelisted to use this bot's administrative functions. Contact its owner if you feel this is a mistake.", { ephemeral: true })
+        let usera = interaction.member.user.id
+        if (!config.management.administrators.find(s => s == usera) && !config.management.lowerusers.find(s => s == usera)) return interaction.reply({ content: "You are not whitelisted to use this bot's administrative functions. Contact its owner if you feel this is a mistake.", ephemeral: true})
         let arid = interaction.options.getString('action')
         let gu = interaction.options.getString('username')
-        if (config.immigration.enabled == false) return interaction.reply(`Immigration is disabled. Re-enable it in the bot's config.`, { ephemeral: true })
+        if (config.immigration.enabled == false) return interaction.reply({ content: `Immigration is disabled. Re-enable it in the bot's config.`, ephemeral: true })
         if (arid == 'add') {
             let uID = await roblox.getIdFromUsername(gu).catch(err => {
                 console.log(err)
-                return interaction.reply(`An error occured.`, { ephemeral: true })
+                return interaction.reply({ content: `An error occured.`, ephemeral: true })
             })
             if (config.immigration.settings.distinguishment.list.find(element => element == uID)) {
-                return interaction.reply('This user is already distinguished.', { ephemeral: true })
+                return interaction.reply({ content: 'This user is already distinguished.', ephemeral: true })
             }
             let realname = await roblox.getUsernameFromId(uID)
             config.immigration.settings.distinguishment.list.push(Number(uID))
             fs.writeFileSync('../config.json', JSON.stringify(config, null, 4))
-            return interaction.reply(`${realname} (${uID}) has been noted as a distinguished user.`, { ephemeral: true })
+            return interaction.reply({ content: `${realname} (${uID}) has been noted as a distinguished user.`, ephemeral: true })
         } else if (arid == 'remove') {
             let uID = await roblox.getIdFromUsername(gu).catch(err => {
                 console.log(err)
                 return interaction.reply(`An error occured.`, { ephemeral: true })
             })
             if (!config.immigration.settings.distinguishment.list.find(element => element == uID)) {
-                return interaction.reply('This user is not distinguished.', { ephemeral: true })
+                return interaction.reply({ content: 'This user is not distinguished.', ephemeral: true })
             }
             let realname = await roblox.getUsernameFromId(uID)
             for (i = 0; i < config.immigration.settings.distinguishment.list.length; i++) {
@@ -56,7 +56,7 @@ module.exports = {
                 }
             }
             fs.writeFileSync('../config.json', JSON.stringify(config, null, 4))
-            return interaction.reply(`${realname} (${uID}) has been removed from the distinguishment list.`, { ephemeral: true })
+            return interaction.reply({ content: `${realname} (${uID}) has been removed from the distinguishment list.`, ephemeral: true })
         } else if (arid == 'view') {
             beginstr = `Here are all users blacklisted in your bot:\n\n`
             for (i = 0; i < config.immigration.settings.distinguishment.list.length; i++) {

@@ -15,11 +15,12 @@ module.exports = {
     category: "immigration",
     async execute(interaction) {
         let user = interaction.options.getString('check')
+        let usera = interaction.member.user.id
         let uid = await roblox.getIdFromUsername(user)
-        if (config.immigration.enabled == false) return interaction.reply(`Immigration is disabled. Re-enable it in the bot's config.`, { ephemeral: true })
-        if (config.immigration.settings.toggle == false) return interaction.reply(`Immigration is currently not enabled. Please enable it with the /immigration command.`, { ephemeral: true })
+        if (config.immigration.enabled == false) return interaction.reply({ content: `Immigration is disabled. Re-enable it in the bot's config.`, ephemeral: true })
+        if (config.immigration.settings.toggle == false) return interaction.reply({ content: `Immigration is currently not enabled. Please enable it with the /immigration command.`, ephemeral: true })
         if (!uid) return interaction.reply(`This user does not exist on Roblox.`, { ephemeral: true })
-        if (!config.management.administrators[usera] && !config.management.lowerusers[usera]) return interaction.reply("You are not whitelisted to use this bot's administrative functions. Contact its owner if you feel this is a mistake.", { ephemeral: true })
+        if (!config.management.administrators.find(s => s == usera) && !config.management.lowerusers.find(s => s == usera)) return interaction.reply({ content: "You are not whitelisted to use this bot's administrative functions. Contact its owner if you feel this is a mistake.", ephemeral: true})
         blacklistedgroups1 = 0
 		const userGroups = await roblox.getGroups(immigrants[i].userId)
 		for (f = 0; f < userGroups.length; f++) {
@@ -39,13 +40,13 @@ module.exports = {
                     .setDescription(`${realname} is a blacklisted user and has been successfully detained.`)
                     .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${uID}&width=420&height=420&format=png`)
                 client.channels.cache.get(config.immigration.logchannel).send({embeds: [iEmbed]})
-                return interaction.reply('This user is a blacklisted individual and deemed ineligible for immigration.', { ephemeral: true })
+                return interaction.reply({ content: 'This user is a blacklisted individual and deemed ineligible for immigration.', ephemeral: true })
             }
         }
         if (config.immigration.settings.distinguishment.enabled == true) {
 			for (f = 0; f < config.immigration.settings.distinguishment.list.length; f++) {
 				if (config.immigration.settings.distinguishment.list[f] == immigrants[i].userId) {
-				return interaction.reply('This user is a distinguished individual and deemed eligible for immigration.', { ephemeral: true })
+				return interaction.reply({ content: 'This user is a distinguished individual and deemed eligible for immigration.', ephemeral: true })
 				}
 			}
 		}
@@ -58,7 +59,7 @@ module.exports = {
                 .setDescription(`${immigrants[i].username} was found as a representative from the United Nations and has been ranked to Foreign Representative.`)
                 .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${uID}&width=420&height=420&format=png`)
             client.channels.cache.get(config.immigration.logchannel).send({ embeds: [iEmbed] })
-            return interaction.reply('This user is a foreign representative and has been ranked accordingly.', { ephemeral: true })
+            return interaction.reply({ content: 'This user is a foreign representative and has been ranked accordingly.', ephemeral: true })
             }
         }
         const player = await roblox.getPlayerInfo(uID)
@@ -70,7 +71,7 @@ module.exports = {
                 .setDescription(`${realname} is underage on Roblox and has been successfully detained.`)
                 .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${uID}&width=420&height=420&format=png`)
             client.channels.cache.get(config.immigration.logchannel).send({ embeds: [iEmbed] })
-            interaction.reply('This user has been caught as underage and has been deemed ineligible for immigration.', { ephemeral: true })
+            interaction.reply({ content: 'This user has been caught as underage and has been deemed ineligible for immigration.', ephemeral: true })
         }
         if (failedcheck == true) {
             await roblox.setRank(config.groupid, uID, Number(config.immigration.failedrank))
@@ -80,9 +81,9 @@ module.exports = {
                 .setDescription(`${realname} was caught in ${blacklistedgroups1} blacklisted groups and successfully detained.`)
                 .setThumbnail(`https://www.roblox.com/headshot-thumbnail/image?userId=${uID}&width=420&height=420&format=png`)
             client.channels.cache.get(config.immigration.logchannel).send({embeds: [iEmbed]})
-            interaction.reply('This user has been caught in blacklisted groups and deemed ineligible for immigration.', { ephemeral: true })
+            interaction.reply({ content: 'This user has been caught in blacklisted groups and deemed ineligible for immigration.', ephemeral: true })
         } else {
-            interaction.reply('This user has been checked and is deemed eligible for immigration.', { ephemeral: true })
+            interaction.reply({ content: 'This user has been checked and is deemed eligible for immigration.', ephemeral: true })
         }
     }
 }
