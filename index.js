@@ -56,7 +56,10 @@ setInterval(async () => {
 	  let blacklistedgroups1 = 0
 	  let blacklistedgroups = config.immigration.settings.blacklistedgroups
 	  let blacklistedusers = config.immigration.settings.blacklistedusers
-	  const immigrants = await roblox.getPlayers(config.groupid, config.immigration.immigrantrank)
+	  const immigrants = await roblox.getPlayers(config.groupid, config.immigration.immigrantrank).catch(err => {
+		  console.log(err)
+	  })
+	  if (!immigrants) return
 	  for (i = 0; i < immigrants.length; i++) {
 		blacklistedgroups1 = 0
 		const userGroups = await roblox.getGroups(immigrants[i].userId)
