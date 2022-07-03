@@ -1,10 +1,10 @@
 {
-    "groupid": 2831233,
+    "groupid": 14774667,
     "clientid": "979856115779129354",
     "guildid": "804877486521319455",
     "immigration": {
-        "enabled": true,
-        "logchannel": "id",
+        "enabled": false,
+        "logchannel": "870919690808094730",
         "settings": {
             "agelimit": 0,
             "blacklistedgroups": [],
@@ -33,7 +33,7 @@
         "enabled": true,
         "comment": "You can add as many keys as you want. You can copy and paste the default one, but they should be seperated by commas. You will need to reinput your groupid from above as the main group ID.",
         "keys": {
-            "main": 2831233,
+            "main": 14774667,
             "army": 2831233
         }
     },

@@ -46,7 +46,7 @@ module.exports = {
                 return interaction.reply("An error occured while getting the group.", {ephemeral: true})
             })
             config.immigration.settings.blacklistedgroups.push(Number(gu))
-            fs.writeFileSync('./config.json', JSON.stringify(config, null, 4))
+            fs.writeFileSync('../config.json', JSON.stringify(config, null, 4))
             return interaction.reply(`${gObj.name} (${gu}) has been added to the immigration blacklist.`, {ephemeral: true})
         } else if (arid.toLowerCase() == 'remove') {
             const gObj = await roblox.getGroup(Number(gu)).catch(err => {
@@ -58,7 +58,7 @@ module.exports = {
                     config.immigration.settings.blacklistedgroups.splice(i, 1)
                 }
             }
-            fs.writeFileSync('./config.json', JSON.stringify(config, null, 4))
+            fs.writeFileSync('../config.json', JSON.stringify(config, null, 4))
             return interaction.reply(`${gObj.name} (${gu}) has been removed from the immigration blacklist if they were on it.`, {ephemeral: true})
         } else if (arid.toLowerCase() == 'view') {
             beginstr = `Here are all groups blacklisted in your bot:\n\n`
@@ -95,7 +95,7 @@ module.exports = {
             }
             let realname = await roblox.getUsernameFromId(uID)
             config.immigration.settings.blacklistedusers.push(Number(uID))
-            fs.writeFileSync('./config.json', JSON.stringify(config, null, 4))
+            fs.writeFileSync('../config.json', JSON.stringify(config, null, 4))
             return interaction.reply(`${realname} (${uID}) has been added to the immigration blacklist.`, { ephemeral: true })
         } else if (arid.toLowerCase() == 'remove') {
                 let uID = await roblox.getIdFromUsername(gu).catch(err => {
@@ -108,7 +108,7 @@ module.exports = {
                     config.immigration.settings.blacklistedusers.splice(i, 1)
                 }
             }
-            fs.writeFileSync('./config.json', JSON.stringify(config, null, 4))
+            fs.writeFileSync('../config.json', JSON.stringify(config, null, 4))
             return interaction.reply(`${realname} (${uID}) has been removed from the immigration blacklist if they were on it.`, { ephemeral: true })
         } else if (arid.toLowerCase() == 'view') {
             beginstr = `Here are all users blacklisted in your bot:\n\n`

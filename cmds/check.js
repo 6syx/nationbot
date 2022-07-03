@@ -16,7 +16,8 @@ module.exports = {
     async execute(interaction) {
         let user = interaction.options.getString('check')
         let uid = await roblox.getIdFromUsername(user)
-        if (config.immigration.settings.toggle !== false) return interaction.reply(`Immigration is currently not enabled. Please enable it with the /immigration command.`, { ephemeral: true })
+        if (config.immigration.enabled == false) return interaction.reply(`Immigration is disabled. Re-enable it in the bot's config.`, { ephemeral: true })
+        if (config.immigration.settings.toggle == false) return interaction.reply(`Immigration is currently not enabled. Please enable it with the /immigration command.`, { ephemeral: true })
         if (!uid) return interaction.reply(`This user does not exist on Roblox.`, { ephemeral: true })
         if (!config.management.administrators[usera] && !config.management.lowerusers[usera]) return interaction.reply("You are not whitelisted to use this bot's administrative functions. Contact its owner if you feel this is a mistake.", { ephemeral: true })
         blacklistedgroups1 = 0

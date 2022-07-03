@@ -2,6 +2,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const config = require('../config.json')
 const roblox = require('noblox.js')
 const discord = require('discord.js')
+const fs = require('fs')
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -27,6 +28,7 @@ module.exports = {
         if (!config.management.administrators[usera] && !config.management.lowerusers[usera]) return interaction.reply("You are not whitelisted to use this bot's administrative functions. Contact its owner if you feel this is a mistake.", { ephemeral: true })
         let arid = interaction.options.getString('action')
         let gu = interaction.options.getString('username')
+        if (config.immigration.enabled == false) return interaction.reply(`Immigration is disabled. Re-enable it in the bot's config.`, { ephemeral: true })
         if (arid == 'add') {
             let uID = await roblox.getIdFromUsername(gu).catch(err => {
                 console.log(err)
@@ -37,7 +39,7 @@ module.exports = {
             }
             let realname = await roblox.getUsernameFromId(uID)
             config.immigration.settings.distinguishment.list.push(Number(uID))
-            fs.writeFileSync('./config.json', JSON.stringify(config, null, 4))
+            fs.writeFileSync('../config.json', JSON.stringify(config, null, 4))
             return interaction.reply(`${realname} (${uID}) has been noted as a distinguished user.`, { ephemeral: true })
         } else if (arid == 'remove') {
             let uID = await roblox.getIdFromUsername(gu).catch(err => {
@@ -53,7 +55,7 @@ module.exports = {
                     config.immigration.settings.distinguishment.list.splice(i, 1)
                 }
             }
-            fs.writeFileSync('./config.json', JSON.stringify(config, null, 4))
+            fs.writeFileSync('../config.json', JSON.stringify(config, null, 4))
             return interaction.reply(`${realname} (${uID}) has been removed from the distinguishment list.`, { ephemeral: true })
         } else if (arid == 'view') {
             beginstr = `Here are all users blacklisted in your bot:\n\n`
