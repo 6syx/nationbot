@@ -94,7 +94,7 @@ module.exports = {
         if (arid.toLowerCase() == 'add') {
             let uID = await roblox.getIdFromUsername(gu).catch(err => {
                 console.log(err)
-                return interaction.reply(`An error occurred.`, { ephemeral: true })
+                return interaction.reply({ content: `An error occurred.`, ephemeral: true })
             })
             if (config.immigration.settings.blacklistedusers.find(element => element == uID)) {
                 return interaction.reply({ content: 'This user is already on the blacklist.', ephemeral: true })
@@ -102,7 +102,7 @@ module.exports = {
             let realname = await roblox.getUsernameFromId(uID)
             config.immigration.settings.blacklistedusers.push(Number(uID))
             fs.writeFileSync('./config.json', JSON.stringify(config, null, 4))
-            return interaction.reply(`${realname} (${uID}) has been added to the immigration blacklist.`, { ephemeral: true })
+            return interaction.reply({ content: `${realname} (${uID}) has been added to the immigration blacklist.`, ephemeral: true })
         } else if (arid.toLowerCase() == 'remove') {
                 let uID = await roblox.getIdFromUsername(gu).catch(err => {
                 console.log(err)
