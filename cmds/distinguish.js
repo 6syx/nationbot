@@ -58,7 +58,7 @@ module.exports = {
             fs.writeFileSync('../config.json', JSON.stringify(config, null, 4))
             return interaction.reply({ content: `${realname} (${uID}) has been removed from the distinguishment list.`, ephemeral: true })
         } else if (arid == 'view') {
-            beginstr = `Here are all users blacklisted in your bot:\n\n`
+            beginstr = `Here are all users distinguished in your group:\n\n`
             for (i = 0; i < config.immigration.settings.distinguishment.list.length; i++) {
                 let list = config.immigration.settings.distinguishment.list
                 let name = await roblox.getUsernameFromId(list[i])

@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const roblox = require('noblox.js')
 const discord = require('discord.js')
+const config = require('../config.json')
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -10,7 +11,7 @@ module.exports = {
     async execute(interaction) {
         let usera = interaction.member.user.id
         if (!config.management.administrators.find(s => s == usera) && !config.management.lowerusers.find(s => s == usera)) return interaction.reply({ content: "You are not whitelisted to use this bot's administrative functions. Contact its owner if you feel this is a mistake.", ephemeral: true})
-        let key = interaction.options.getNumber('key')
+        let key = interaction.options.getNumber('group')
         let joinreqs = await roblox.getJoinRequests(key)
         let group = await roblox.getGroup(key)
         let beginstr = "Here is a list of people requesting to join your group:\n\n"

@@ -14,8 +14,8 @@ for (const file of commandFiles) {
 	if (command.category.toLowerCase() == "ranking") {
 		if (config.ranking.enabled == true) {
 			let numberopt = new builders.SlashCommandNumberOption()
-				.setName('key')
-				.setDescription('Key of the group you want to manage.')
+				.setName('group')
+				.setDescription('Group you want to manage.')
 				.setRequired(true)
 			Object.entries(config.ranking.keys).forEach(([key, value]) => {
 				numberopt.addChoices({name: key, value: value})
@@ -31,6 +31,8 @@ for (const file of commandFiles) {
 		if (config.immigration.settings.distinguishment.enabled == true) {
 			commands.push(command.data.toJSON());
 		}
+	} else if (command.category.toLowerCase() == 'other') {
+		commands.push(command.data.toJSON());
 	}
 }
 

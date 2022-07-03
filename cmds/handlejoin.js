@@ -21,7 +21,7 @@ module.exports = {
     async execute(interaction) {
         let usera = interaction.member.user.id
         if (!config.management.administrators.find(s => s == usera) && !config.management.lowerusers.find(s => s == usera)) return interaction.reply({ content: "You are not whitelisted to use this bot's administrative functions. Contact its owner if you feel this is a mistake.", ephemeral: true})
-        let key = interaction.options.getNumber('key')
+        let key = interaction.options.getNumber('group')
         let username = interaction.options.getString('username')
         let status = interaction.options.getBoolean('accept-deny')
         if (config.ranking.enabled == false) return interaction.reply({ content: `Ranking is currently not enabled. Please enable it in the bot's config.`, ephemeral: true })

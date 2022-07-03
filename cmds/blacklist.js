@@ -12,8 +12,8 @@ module.exports = {
             .setDescription("Groups or users.")
             .setRequired(true)
             .setChoices(
-                { name: "Groups", value: "groups"},
-                { name: "Users", value: "users"},
+                { name: "Blacklisted Groups", value: "groups"},
+                { name: "Blacklisted Users", value: "users"},
             )
         )
         .addStringOption(opt =>
@@ -21,14 +21,14 @@ module.exports = {
             .setDescription("Add or remove.")
             .setRequired(true)
             .setChoices(
-                { name: "Add", value: "add"},
-                { name: "Remove", value: "remove"},
-                { name: "View", value: "view"},
+                { name: "Add to blacklist", value: "add"},
+                { name: "Remove from blacklist", value: "remove"},
+                { name: "View blacklist", value: "view"},
             )
         )
         .addStringOption(opt =>
             opt.setName('user-or-group')
-            .setDescription("THe user/group to action.")
+            .setDescription("The user/group to action.")
             .setRequired(true)
         ),
     category: "immigration",
@@ -53,13 +53,16 @@ module.exports = {
                 console.log(err)
                 return interaction.reply({ content: "An error occured while getting the group.", ephemeral: true})
             })
+            if (!config.immigration.settings.distinguishment.list.find(element => element == uID)) {
+                return interaction.reply({ content: 'This group is not blacklisted.', ephemeral: true })
+            }
             for (i = 0; i < config.immigration.settings.blacklistedgroups.length; i++) {
                 if (config.immigration.settings.blacklistedgroups[i] == Number(gu)) {
                     config.immigration.settings.blacklistedgroups.splice(i, 1)
                 }
             }
             fs.writeFileSync('../config.json', JSON.stringify(config, null, 4))
-            return interaction.reply({ content: `${gObj.name} (${gu}) has been removed from the immigration blacklist if they were on it.`, ephemeral: true})
+            return interaction.reply({ content: `${gObj.name} (${gu}) has been removed from the immigration blacklist.`, ephemeral: true})
         } else if (arid.toLowerCase() == 'view') {
             beginstr = `Here are all groups blacklisted in your bot:\n\n`
             for (i = 0; i < config.immigration.settings.blacklistedgroups.length; i++) {
@@ -90,7 +93,7 @@ module.exports = {
                 console.log(err)
                 return interaction.reply(`An error occured.`, { ephemeral: true })
             })
-            if (config.immigration.settings.blacklistedusers.find(element => element == uID)) {
+            if (config.immigration.settings.blacklistedusers.find(element => element == gu)) {
                 return interaction.reply({ content: 'This user is already on the blacklist.', ephemeral: true })
             }
             let realname = await roblox.getUsernameFromId(uID)
@@ -103,13 +106,16 @@ module.exports = {
                 return interaction.reply({ content: `An error occured.`, ephemeral: true })
             })
             let realname = await roblox.getUsernameFromId(uID)
+            if (!config.immigration.settings.distinguishment.list.find(element => element == uID)) {
+                return interaction.reply({ content: 'This user is not blacklisted.', ephemeral: true })
+            }
             for (i = 0; i < config.immigration.settings.blacklistedusers.length; i++) {
                 if (config.immigration.settings.blacklistedusers[i] == uID) {
                     config.immigration.settings.blacklistedusers.splice(i, 1)
                 }
             }
             fs.writeFileSync('../config.json', JSON.stringify(config, null, 4))
-            return interaction.reply({ content: `${realname} (${uID}) has been removed from the immigration blacklist if they were on it.`, ephemeral: true })
+            return interaction.reply({ content: `${realname} (${uID}) has been removed from the immigration blacklist.`, ephemeral: true })
         } else if (arid.toLowerCase() == 'view') {
             beginstr = `Here are all users blacklisted in your bot:\n\n`
             for (i = 0; i < config.immigration.settings.blacklistedusers.length; i++) {
