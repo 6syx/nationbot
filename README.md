@@ -21,7 +21,7 @@ Install the extension [BTRoblox](https://chrome.google.com/webstore/detail/btrob
 
 You are able to host this bot on your own computer, however it is not recommended as you would have to leave your computer open all the time. I suggest a form of cloud hosting, and a free and easy way is none other than repl.it.
 
-![Run on Replit](https://raw.githubusercontent.com/BinBashBanana/deploy-buttons/master/buttons/remade/replit.svg)(https://replit.com/github/paraanoia/nationbot)
+[![Run on Replit](https://raw.githubusercontent.com/BinBashBanana/deploy-buttons/master/buttons/remade/replit.svg)](https://replit.com/github/paraanoia/nationbot)
 
 If you click this button, it will create a version of nation bot in repl. Configure the config as you'd like and then run it. It will open a link in the top right.
 Head to [UptimeRobot](https://uptimerobot.com) and make an account if you don't have one. Put your bot in as an HTTP monitor set to check every 5 minutes.
