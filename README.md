@@ -35,9 +35,10 @@ Install the extension [BTRoblox](https://chrome.google.com/webstore/detail/btrob
 
 You are able to host this bot on your own computer, however it is not recommended as you would have to leave your computer open all the time. I suggest a form of cloud hosting, and a free and easy way is none other than repl.it.
 
-[![Run on Replit](https://raw.githubusercontent.com/BinBashBanana/deploy-buttons/master/buttons/remade/replit.svg)](https://replit.com/github/paraanoia/nationbot)
+[![Run on Replit](https://raw.githubusercontent.com/BinBashBanana/deploy-buttons/master/buttons/remade/replit.svg)](https://replit.com/@justIeo/nationbot)
 
-If you click this button, it will create a version of nation bot in repl.
+If you click this button, it will lead you to a version of this bot in repl.it.
+Click on the fork button in the top right.
 Configure the config as you'd like and then run it. It will open a link in the top right.
 In repl, the .env file will be hidden on the left bar as its own tab. You will have to input the COOKIE and TOKEN keys again
 
