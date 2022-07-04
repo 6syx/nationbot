@@ -39,9 +39,7 @@ You are able to host this bot on your own computer, however it is not recommende
 
 If you click this button, it will create a version of nation bot in repl.
 Configure the config as you'd like and then run it. It will open a link in the top right.
-In repl, the .env file will be hidden on the left bar as its own tab. You will have to input the COOKIE and TOKEN keys again.
-
-repl wont let you run this because they're too downgraded, workaround soon
+In repl, the .env file will be hidden on the left bar as its own tab. You will have to input the COOKIE and TOKEN keys again
 
 ![repl .env](https://cdn.upload.systems/uploads/WPbmUgy2.png)
 
