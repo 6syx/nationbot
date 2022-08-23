@@ -45,5 +45,6 @@ In repl, the .env file will be hidden on the left bar as its own tab. You will h
 ![repl .env](https://cdn.upload.systems/uploads/WPbmUgy2.png)
 
 Head to [UptimeRobot](https://uptimerobot.com) and make an account if you don't have one. Put your bot in as an HTTP monitor set to check every 5 minutes.
+Alternatively to UptimeRobot, [Freshping](https://www.freshworks.com/website-monitoring/) will suffice. It's a simple "type in the bot URL and go" type thing.
 
 ![thing](https://cdn.upload.systems/uploads/F15LgBz3.png)
