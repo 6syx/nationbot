@@ -33,6 +33,17 @@ for (const file of commandFiles) {
 		}
 	} else if (command.category.toLowerCase() == 'other') {
 		commands.push(command.data.toJSON());
+	} else if (command.category.toLowerCase() == 'ssu') {
+		if (config.ssu.enabled == true) {
+			let gameopt = new builders.SlashCommandStringOption()
+				.setName('game')
+				.setDescription('Game to host the SSU on.')
+				.setRequired(true)
+			Object.entries(config.ssu.games).forEach(([key, value]) => {
+				gameopt.addChoices({name: key, value: value})
+			})
+			commands.push(command.data.toJSON());
+		}
 	}
 }
 

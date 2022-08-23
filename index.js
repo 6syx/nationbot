@@ -17,6 +17,7 @@ const fs = require('fs')
 const commandFiles = fs.readdirSync('./cmds').filter(file => file.endsWith('.js'));
 const config = require('./config.json')
 const ms = require('ms')
+module.exports.botclient = client
 
 client.commands = new discord.Collection()
 
@@ -109,7 +110,7 @@ setInterval(async () => {
 			return
 		}
 		if (config.immigration.settings.majororganization.enabled == true) {
-		  if (await roblox.getRankInGroup(config.immigration.un.group, immigrants[i].userId) >= config.immigration.settings.majororganization.org_rank_id) {
+		  if (await roblox.getRankInGroup(config.immigration.settings.majororganization.groupid, immigrants[i].userId) >= config.immigration.settings.majororganization.org_rank_id) {
 			await roblox.setRank(config.groupid, immigrants[i].userId, Number(config.immigration.settings.majororganization.your_foreign_rank_id))
 			let iEmbed = new discord.MessageEmbed()
 			  .setTitle('Success')
@@ -149,3 +150,12 @@ setInterval(async () => {
 
 roblox.setCookie(process.env.COOKIE)
 client.login(process.env.TOKEN)
+
+setInterval(async () => {
+	const cdtime = JSON.parse(fs.readFileSync(`./cooldown.json`, 'utf-8'))
+	let nowtime = Math.round(Date.now() / 1000)
+	if (cdtime.timeuntilcooled <= nowtime) {
+		cdtime.timeuntilcooled = null
+		fs.writeFileSync('./cooldown.json', JSON.stringify(cdtime, null, 4))
+	}
+}, ms('20s'))

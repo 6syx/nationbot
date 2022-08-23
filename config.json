@@ -38,6 +38,19 @@
             "army": 1234567
         }
     },
+    "ssu": {
+        "enabled": false,
+        "comment": "This category allows you to host SSUs for your game using the bot. Copy and paste the below value for as many games as you have, and ensure they are seperated by commas.",
+        "games": {
+            "yourtownnamehere": "placelinkhere",
+            "yourothertownnamehere": "placelinkhere"
+        },
+        "ssuroleid": "discord role id for ssu perms",
+        "channel": "channel id for ssus",
+        "cooldown": "1h",
+        "ping": "",
+        "comment2": "The ping should either be @here, @everyone, or a role. Roles should be formatted as '<@&roleid>'. Whatever is put here goes in front of the message."
+    },
     "management": {
         "comment": "These go by Discord user IDs. Administrators can only be added through the script, so choose wisely.",
         "administrators": [
