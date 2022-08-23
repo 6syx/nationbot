@@ -8,7 +8,7 @@ The main file that will be used in this guide will be the `config.json`. I am no
 
 The `.env` file will contain your secrets, such as your Discord token and your Roblox cookie.
 
-If you need any further assistance, contact [leo.#9999](https://discord.com/users/309803507249315852) ([309803507249315852](https://discord.com/users/309803507249315852)) on discord or open an issue.
+If you need any further assistance, join the support discord [here](https://discord.gg/qgtXyssykc) or open an issue.
 
 (im terrible at doc writing ok please help)
 
