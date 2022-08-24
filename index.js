@@ -17,9 +17,10 @@ const fs = require('fs')
 const commandFiles = fs.readdirSync('./cmds').filter(file => file.endsWith('.js'));
 const config = require('./config.json')
 const ms = require('ms')
-module.exports.botclient = client
 
 client.commands = new discord.Collection()
+
+module.exports.botclient = client
 
 for (const file of commandFiles) {
 	const command = require(`./cmds/${file}`);
