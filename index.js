@@ -53,7 +53,7 @@ client.on('interactionCreate', async interaction => {
 })
 
 setInterval(async () => {
-	if (config.immigration.enabled == true) {
+	if (config.immigration.enabled == true && config.immigration.settings.toggle == true) {
 	  let failedcheck = false
 	  let blacklistedgroups1 = 0
 	  let blacklistedgroups = config.immigration.settings.blacklistedgroups
