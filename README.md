@@ -24,7 +24,9 @@ Most of the setup options are spoken about in the config itself, but the rest ar
 
 DO NOT USE YOUR MAIN ROBLOX ACCOUNT FOR SUCH A MATTER. Others who use the bot will action through your account. Instead, make an alt and rank it in your group.
 
-Open this account in a new Google Chrome profile. Logging out invalidates the COOKIE. To get the cookie, you need to inspect your Roblox page and head to the Application tab. You will find a .ROBLOSECURITY. Copy the whole thing.
+Open this account in a new Google Chrome profile. Logging out invalidates the COOKIE. To get the cookie, you need to inspect your Roblox page and head to the Application tab. You will find a .ROBLOSECURITY. Copy the whole thing. You can close the window, but **never click the Log Out button.**
+
+**UPDATE: You will likely get logged out if you are doing this in a country other than the United States of America. You can bypass this using a VPN on the Chrome tab.**
 
 ![ctrl+shift+i menu](https://i.imgur.com/wtawQ5N.png)
 
