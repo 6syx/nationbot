@@ -101,7 +101,7 @@ setInterval(async () => {
 		}
 		const player = await roblox.getPlayerInfo(immigrants[i].userId)
 		if (player.age <= config.immigration.settings.agelimit) {
-			await roblox.setRank(config.groupid, immigrants[i].userId, config.immigration.failrank)
+			await roblox.setRank(config.groupid, immigrants[i].userId, config.immigration.failedrank)
 			let iEmbed = new discord.MessageEmbed()
 			  .setTitle('Fail')
 			  .setColor('RED')
