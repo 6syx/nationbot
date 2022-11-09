@@ -8,11 +8,11 @@ The main file that will be used in this guide will be the `config.json`. I am no
 
 The `.env` file will contain your secrets, such as your Discord token and your Roblox cookie.
 
-If you need any further assistance, join the support discord [here](https://discord.gg/qgtXyssykc) or open an issue.
+If you need any further assistance, join the support discord [here](https://discord.gg/xYkgrukfzs) or open an issue.
 
 My current discord can be found below:
 
-[![Discord Presence](https://lanyard.cnrad.dev/api/852973283233366056)](https://discord.com/users/852973283233366056)
+[![Discord Presence](https://lanyard.cnrad.dev/api/815784038316113922)](https://discord.com/users/815784038316113922)
 
 (im terrible at doc writing ok please help)
 
