@@ -41,6 +41,8 @@ client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return;
 
 	const command = client.commands.get(interaction.commandName);
+	
+	if (interaction.guild.id !== config.guildid) return interaction.reply("bot isnt configured with this guild")
 
 	if (!command) return;
 
