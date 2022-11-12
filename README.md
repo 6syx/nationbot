@@ -54,3 +54,5 @@ Head to [UptimeRobot](https://uptimerobot.com) and make an account if you don't 
 Alternatively to UptimeRobot, [Freshping](https://www.freshworks.com/website-monitoring/) will suffice. It's a simple "type in the bot URL and go" type thing.
 
 ![thing](https://cdn.upload.systems/uploads/F15LgBz3.png)
+
+PS: you may obtain the active developer badge using this bot.
