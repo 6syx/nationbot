@@ -12,7 +12,7 @@ If you need any further assistance, join the support discord [here](https://disc
 
 My current discord can be found below:
 
-[![Discord Presence](https://lanyard.cnrad.dev/api/815784038316113922)](https://discord.com/users/815784038316113922)
+[![Discord Presence](https://lanyard.cnrad.dev/api/815784038316113922?idleMessage=quit%20snooping%20at%20my%20status%20lol&theme=dark&bg=3b0201&borderRadius=20px&hideStatus=true)](https://discord.com/users/815784038316113922)
 
 (im terrible at doc writing ok please help)
 
