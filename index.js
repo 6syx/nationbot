@@ -77,7 +77,7 @@ setInterval(async () => {
 		}
 		for (f = 0; f < blacklistedusers.length; f++) {
 		  if (blacklistedusers[f] == immigrants[i].userId) {
-			await roblox.setRank(config.groupid, immigrants[i].userId, Number(config.immigration.failrank))
+			await roblox.setRank(config.groupid, immigrants[i].userId, Number(config.immigration.failedrank))
 			let iEmbed = new discord.MessageEmbed()
 			  .setTitle('Fail')
 			  .setColor('RED')
