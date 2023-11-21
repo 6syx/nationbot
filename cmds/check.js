@@ -37,7 +37,7 @@ module.exports = {
         for (f = 0; f < blacklistedusers.length; f++) {
             if (blacklistedusers[f] == uid) {
                 if (await roblox.getRankInGroup(config.groupid, uid) >= 1) {
-                    await roblox.setRank(config.groupid, uid, Number(config.immigration.failrank))
+                    await roblox.setRank(config.groupid, uid, Number(config.immigration.failedrank))
                     let iEmbed = new discord.MessageEmbed()
                         .setTitle('Fail')
                         .setColor('RED')
